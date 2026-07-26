@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Full House</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>♠ Full House</h1>
+    <p class="subtitle">
+      A screen-scraping poker assistant for friendly, no-money games. Runs entirely in your
+      browser — nothing is sent to a server. This is a pot-odds/equity heuristic, not a GTO
+      solver — see the repo README for what it is and isn't before you trust it. Consider
+      telling your group you're using it.
+    </p>
+  </header>
+
+  <main>
+    <section class="step">
+      <h2>1. Share your screen</h2>
+      <p>Pick the window or tab showing your poker table.</p>
+      <button id="shareBtn">Share Screen</button>
+    </section>
+
+    <section class="step">
+      <h2>2. Calibrate table regions</h2>
+      <p>One-time per browser window size/zoom/theme. Redo this if any of those change.</p>
+      <label>
+        Number of opponent seats to track:
+        <input id="opponentCount" type="number" min="0" max="8" value="2" />
+      </label>
+      <button id="calibrateBtn" disabled>Calibrate</button>
+      <div id="calibArea"></div>
+    </section>
+
+    <section class="step">
+      <h2>3. Build card templates</h2>
+      <p>One-time (reusable across sessions unless the table theme changes). Show each of the 52 cards in the hero-card-1 region.</p>
+      <button id="templatesBtn" disabled>Build Templates</button>
+      <div id="templateArea"></div>
+    </section>
+
+    <section class="step">
+      <h2>4. Run it</h2>
+      <p>
+        Opens a floating always-on-top recommendation window in Chrome/Edge
+        (falls back to an in-page panel in other browsers).
+      </p>
+      <button id="startBtn">Start Bot</button>
+      <button id="stopBtn" disabled>Stop</button>
+      <div id="panel" class="in-page-panel"></div>
+    </section>
+
+    <section class="step">
+      <h2>Log</h2>
+      <div id="log" class="log"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
