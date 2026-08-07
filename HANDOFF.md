@@ -117,18 +117,27 @@ refuse/escalate any request that would make this tool viable against a
 real-money platform.
 
 Read CLAUDE.md, then PROJECT_STATE.md, then TASKS.md before doing anything else.
-The documentation system (17 files) was just built from a full repo audit — no
-application code has been changed. The pipeline (capture -> recognize_cards /
-recognize_text -> state -> engine -> overlay -> main) is fully wired at the
-source level and passes syntax checks + dependency imports, but has NEVER been
-verified against a live poker table in any environment this audit could find
-evidence of — that's the biggest open item (see TESTING.md's manual smoke
-checklist for how to do it when you have a live table).
+The 17-file documentation system is built AND committed (latest commit as of
+2026-08-07 is 0ea7bab, "docs: add full handoff documentation system"; a
+follow-up checkpoint/verification pass landed in a second commit the same day —
+check `git log --oneline -5` fresh, don't trust this prompt's hashes blindly).
+No application code has been changed by any documentation session so far. The
+pipeline (capture -> recognize_cards / recognize_text -> state -> engine ->
+overlay -> main) is fully wired at the source level and passes syntax checks +
+dependency imports, but has NEVER been verified against a live poker table in
+any environment either documentation pass could find evidence of — that's the
+biggest open item (see TESTING.md's manual smoke checklist for how to do it
+when you have a live table).
 
-Two known discrepancies to be aware of: (1) config.OPPONENT_RANGE is defined but
-never actually read by engine.py — it's a no-op despite its comment; (2)
-requirements.txt pins eval7>=0.1.11 but the installed .venv has 0.1.10.
+Two known discrepancies, re-confirmed as of the 2026-08-07 checkpoint pass and
+still unresolved: (1) config.OPPONENT_RANGE is defined but never actually read
+by engine.py — it's a no-op despite its comment; (2) requirements.txt pins
+eval7>=0.1.11 but the installed .venv has 0.1.10.
 
-Before changing anything, check git status fresh — don't trust PROJECT_STATE.md
-blindly, verify it matches reality first.
+Before changing anything: run `git status` and `git log --oneline -5` fresh —
+don't trust PROJECT_STATE.md's recorded commit hash blindly, it has gone stale
+before (see CHANGELOG.md's 2026-08-07 entry for exactly how). Re-verify the
+no-money-only scoping is still intact in README.md/CLAUDE.md/SECURITY.md/
+ROADMAP.md before doing anything else if this repo's purpose ever seems to have
+drifted.
 ```

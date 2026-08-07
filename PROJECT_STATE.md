@@ -1,23 +1,30 @@
 # PROJECT_STATE.md
 
-**Audit timestamp:** 2026-08-06 05:52 MST (this documentation-build session)
+**Audit timestamp:** 2026-08-07 (final transfer checkpoint pass — re-verified
+against live repo; supersedes the 2026-08-06 05:52 MST documentation-build
+snapshot below)
 
 ## Git state
 
 - **Current branch:** `main`
-- **Tracking:** `origin/main`, up to date (no ahead/behind divergence)
-- **Latest commit:** `7c78408452812c01ebe1af886f072628cd7adf89` —
-  "Add favicon matching the spade-suit branding" (2026-08-06 03:43:22 -0700)
+- **Tracking:** `origin/main`, up to date (0 ahead / 0 behind, confirmed via
+  `git fetch origin` + `git rev-list --left-right --count origin/main...HEAD`)
+- **Latest commit:** `0ea7babc597e040fa10dbc87fb659fd82f6a9a51` —
+  "docs: add full handoff documentation system" (2026-08-06 20:20:07 -0700). This
+  is the commit that added all 17 handoff `.md` files listed below — they are
+  **committed**, not untracked (the original documentation-build session below
+  wrote them but had not yet committed; that commit happened later the same day).
 - **Working tree:** clean — `git status` reports "nothing to commit, working tree
   clean"
 - **Untracked files:** none tracked-but-unignored are untracked. Two paths exist on
   disk but are gitignored and untracked by design: `web/.env.local` and
-  `web/.vercel/` (their contents were not inspected by this audit — see
-  CLAUDE.md's Environment setup section).
+  `web/.vercel/` (their contents were not inspected by this or the prior
+  audit — see CLAUDE.md's Environment setup section).
 - **Uncommitted changes:** none.
 
 ### Recent commit history (full)
 ```
+0ea7bab docs: add full handoff documentation system
 7c78408 Add favicon matching the spade-suit branding
 1901c95 Add .gitignore for web/
 b3202ed Add GitHub Pages deploy workflow for web/
@@ -25,8 +32,10 @@ b3202ed Add GitHub Pages deploy workflow for web/
 7d552ae Initial commit: Full House poker assistant (desktop + browser versions)
 ```
 The project was committed once as a complete initial drop (`7d552ae`), then had
-three small follow-up commits, all scoped to `web/` and its GitHub Pages deploy
-workflow. No commit has touched the root Python files since the initial commit.
+three small follow-up commits scoped to `web/` and its GitHub Pages deploy
+workflow, then one further commit (`0ea7bab`) adding the full 17-file
+documentation system. No commit has touched the root Python application files
+since the initial commit.
 
 ## Active objective (this session)
 

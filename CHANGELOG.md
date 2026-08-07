@@ -1,10 +1,19 @@
 # CHANGELOG.md
 
-Entries below the "Documentation audit" line are derived directly from `git log`
-on `main` — no dates or details were invented. Commit hashes are included for
-traceability. Entries above that line record this documentation session.
+Entries below "Prior history" are derived directly from `git log` on `main` — no
+dates or details were invented. Commit hashes are included for traceability.
+Entries above that line record documentation/checkpoint sessions themselves
+(each tied to its own commit hash where one exists).
 
-## Unreleased — Documentation audit (this session)
+## 2026-08-07 — Final transfer checkpoint pass
+
+- Re-verified `PROJECT_STATE.md`/`TASKS.md`/`FEATURES.md`/`SECURITY.md` against
+  the live repo (git state, `py_compile` on all 10 root `.py` files, dependency
+  imports, secrets grep, no-money scoping). No stale facts found beyond the git
+  commit reference below; fixed that. No application code changed. Refreshed
+  `HANDOFF.md`'s "Prompt for the next Claude Code account" section.
+
+## `0ea7bab` — Documentation audit committed (2026-08-06 20:20:07 -0700)
 
 - Added the full 17-file handoff documentation system (`CLAUDE.md`,
   `PROJECT_STATE.md`, `ARCHITECTURE.md`, `FILE_MAP.md`, `FEATURES.md`,
