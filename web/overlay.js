@@ -52,6 +52,8 @@ export class Overlay {
 
     const panel = doc.createElement("div");
     panel.className = "fh-panel";
+    panel.setAttribute("role", "status");
+    panel.setAttribute("aria-live", "polite");
 
     this.actionEl = doc.createElement("div");
     this.actionEl.className = "fh-action";

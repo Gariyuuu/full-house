@@ -58,6 +58,8 @@ els.templatesBtn.addEventListener("click", () => {
   els.templateArea.innerHTML = "";
   const missing = missingTemplates();
   const status = document.createElement("div");
+  status.setAttribute("role", "status");
+  status.setAttribute("aria-live", "polite");
   status.textContent = `${missing.length} of 52 templates still needed. Show each card in the HERO CARD 1 region.`;
   els.templateArea.appendChild(status);
 
@@ -65,10 +67,12 @@ els.templatesBtn.addEventListener("click", () => {
   preview.width = 96;
   preview.height = 132;
   preview.className = "template-preview";
+  preview.setAttribute("aria-hidden", "true");
   els.templateArea.appendChild(preview);
   els.templateArea.appendChild(document.createElement("br"));
 
   const select = document.createElement("select");
+  select.setAttribute("aria-label", "Card to capture next");
   for (const code of missing) {
     const opt = document.createElement("option");
     opt.value = code;
