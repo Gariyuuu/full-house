@@ -43,6 +43,8 @@ export function runCalibrationUI(frameCanvas, containerEl, opponentCount) {
 
     const prompt = document.createElement("div");
     prompt.className = "calib-prompt";
+    prompt.setAttribute("role", "status");
+    prompt.setAttribute("aria-live", "polite");
     containerEl.appendChild(prompt);
 
     const displayCanvas = document.createElement("canvas");
@@ -50,6 +52,10 @@ export function runCalibrationUI(frameCanvas, containerEl, opponentCount) {
     displayCanvas.width = Math.round(frameCanvas.width * scale);
     displayCanvas.height = Math.round(frameCanvas.height * scale);
     displayCanvas.className = "calib-canvas";
+    displayCanvas.setAttribute(
+      "aria-label",
+      "Table screenshot for calibration. Drag a box with a mouse to mark each requested region; no keyboard equivalent exists for this drag action.",
+    );
     containerEl.appendChild(displayCanvas);
 
     const dctx = displayCanvas.getContext("2d");

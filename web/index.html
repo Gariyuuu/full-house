@@ -33,14 +33,14 @@
         <input id="opponentCount" type="number" min="0" max="8" value="2" />
       </label>
       <button id="calibrateBtn" disabled>Calibrate</button>
-      <div id="calibArea"></div>
+      <div id="calibArea" role="region" aria-label="Calibration"></div>
     </section>
 
     <section class="step">
       <h2>3. Build card templates</h2>
       <p>One-time (reusable across sessions unless the table theme changes). Show each of the 52 cards in the hero-card-1 region.</p>
       <button id="templatesBtn" disabled>Build Templates</button>
-      <div id="templateArea"></div>
+      <div id="templateArea" role="region" aria-label="Card templates"></div>
     </section>
 
     <section class="step">
@@ -51,12 +51,12 @@
       </p>
       <button id="startBtn">Start Bot</button>
       <button id="stopBtn" disabled>Stop</button>
-      <div id="panel" class="in-page-panel"></div>
+      <div id="panel" class="in-page-panel" role="region" aria-label="Recommendation"></div>
     </section>
 
     <section class="step">
       <h2>Log</h2>
-      <div id="log" class="log"></div>
+      <div id="log" class="log" role="log" aria-live="polite" aria-relevant="additions"></div>
     </section>
   </main>
 
