@@ -205,7 +205,12 @@ els.startBtn.addEventListener("click", async () => {
 
   const templates = await loadTemplateImageData();
   log("Warming up OCR engine (first load can take a few seconds)...");
+  const warmupRing = document.createElement("span");
+  warmupRing.className = "progress-ring";
+  warmupRing.setAttribute("aria-hidden", "true");
+  els.startBtn.prepend(warmupRing);
   await warmUpOCR();
+  warmupRing.remove();
 
   await overlay.start(els.panel);
   log(`Overlay started (${overlay.usingPip ? "floating Picture-in-Picture window" : "in-page panel — your browser doesn't support floating mode"}).`);
