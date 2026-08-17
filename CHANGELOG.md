@@ -5,6 +5,15 @@ dates or details were invented. Commit hashes are included for traceability.
 Entries above that line record documentation/checkpoint sessions themselves
 (each tied to its own commit hash where one exists).
 
+## 2026-08-17 — Onboard-mode doc audit (part of a 5-repo batch sweep)
+
+- Found `HEAD` had moved to `e1d6c68`, 8 commits past the `0ea7bab` this doc set described — all 8 scoped
+  entirely to `web/` (screen-reader accessibility for the canvas UI, OpenGraph/Twitter metadata + og.png,
+  and small motion polish on the overlay/buttons). No root Python desktop code, no-money scoping, or
+  `engine.py`/`web/engine.js` decision logic touched by any of them. Updated `PROJECT_STATE.md` with the
+  full commit-by-commit detail; no other doc needed correction. Documentation-only pass, no
+  `py_compile`/dependency/secrets re-verification run.
+
 ## 2026-08-07 — Final transfer checkpoint pass
 
 - Re-verified `PROJECT_STATE.md`/`TASKS.md`/`FEATURES.md`/`SECURITY.md` against

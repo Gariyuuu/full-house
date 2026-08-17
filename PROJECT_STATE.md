@@ -22,7 +22,7 @@ snapshot below)
   audit — see CLAUDE.md's Environment setup section).
 - **Uncommitted changes:** none.
 
-### Recent commit history (full)
+### Recent commit history (full, as of the 2026-08-07 checkpoint)
 ```
 0ea7bab docs: add full handoff documentation system
 7c78408 Add favicon matching the spade-suit branding
@@ -36,6 +36,22 @@ three small follow-up commits scoped to `web/` and its GitHub Pages deploy
 workflow, then one further commit (`0ea7bab`) adding the full 17-file
 documentation system. No commit has touched the root Python application files
 since the initial commit.
+
+### Update — 2026-08-17 onboard-mode doc audit (part of a 5-repo batch sweep)
+
+`git log` shows 8 further commits past `0ea7bab`, current `HEAD` is `e1d6c68` ("Merge branch 'chore/polish'
+into main", 2026-08-16). All 8 are `web/`-scoped only — none touch the root Python desktop assistant, which
+remains this documentation system's primary subject per `CLAUDE.md`. In order: `05ac508` (a docs checkpoint,
+itself part of the existing documented history), `005cd6b`/`67efd52` (real: `aria-live` regions + `role`/
+`aria-label` for `web/`'s canvas-based template/calibration UI, screen-reader accessibility — note calibration's
+drag-to-select still has no keyboard equivalent, called out explicitly in the commit message), `752c464`/
+`e713744` (OpenGraph/Twitter meta tags + a static `og.png` for `web/index.html`), `e718f32`/`e1d6c68` (a
+loader ring during OCR warm-up, button press feedback, and a decision-change flash on the overlay text —
+`web/app.js`/`overlay.js`/`style.css`, respects `prefers-reduced-motion`). None of these change the
+no-money/friendly-games-only scope, the desktop pipeline, or `engine.py`/`web/engine.js`'s decision logic —
+confirmed by reading each commit's diff. Working tree confirmed clean; not independently re-verified beyond
+that (no `python3 -m py_compile`/dependency-import re-run, no `web/` local-serve check — documentation-only
+pass).
 
 ## Active objective (this session)
 

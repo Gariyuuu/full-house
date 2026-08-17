@@ -115,3 +115,24 @@ fixed). No-money-only scoping confirmed intact. No secrets found. Next
 recommended actions unchanged from Session 1: resolve the `eval7` version
 mismatch, perform a live-table verification pass, decide on the
 `OPPONENT_RANGE` dead-config item.
+
+## Session: 2026-08-17 — Onboard-mode documentation audit (part of a 5-repo batch sweep, no feature work)
+
+- **Goal**: verify the existing memory system against actual repo state as part of an unattended batch sweep
+  across 5 unrelated repos. No conversation context carried over; no code changes.
+- **Finding**: `PROJECT_STATE.md`'s recorded `HEAD` (`0ea7bab`) was 8 commits behind actual `main`
+  (`e1d6c68`). Confirmed via `git log 0ea7bab..HEAD` and read each real (non-merge) commit's diff directly:
+  all 8 commits are scoped entirely to `web/` — screen-reader `aria-live`/`role`/`aria-label` additions for
+  the canvas-based template/calibration UI (`005cd6b`), OpenGraph/Twitter metadata + `og.png` (`752c464`),
+  and motion polish on the overlay/buttons respecting `prefers-reduced-motion` (`e718f32`). None touch the
+  root Python desktop assistant (this doc system's primary subject), the no-money/friendly-games-only scope
+  statement, or `engine.py`/`web/engine.js`'s decision parity.
+- **Files updated**: `PROJECT_STATE.md` (new dated section under Git state), `CHANGELOG.md` (new entry),
+  this file. No other memory file needed correction — `CLAUDE.md`, `HANDOFF.md`, `TASKS.md`, `SECURITY.md`,
+  `ROADMAP.md`, `README.md`, and the rest were spot-checked and still accurate; the no-money scoping
+  statement was re-confirmed present and unchanged in all four files that carry it.
+- **Verification performed**: none re-run (`python3 -m py_compile`, dependency imports, secrets grep were
+  **not** re-executed this pass — documentation-only, unattended batch sweep). Every claim in the update
+  above is from reading `git log`/`git show` directly, not from running the application.
+- **Work remaining**: unchanged from the 2026-08-07 checkpoint — resolve the `eval7` version mismatch,
+  perform a live-table verification pass, decide on the `OPPONENT_RANGE` dead-config item. See `TASKS.md`.
