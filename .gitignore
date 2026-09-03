@@ -5,3 +5,5 @@ table_layout.json
 templates/*.png
 node_modules/
 .DS_Store
+.vercel
+.env*
