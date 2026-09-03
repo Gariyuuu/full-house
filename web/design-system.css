@@ -1,0 +1,87 @@
+/* ============================================================================
+ * PORTFOLIO DESIGN SYSTEM — TRIMMED STATIC INCLUDE
+ * Derived from MASTER.css v1.2. Carries ONLY the gates that apply to a plain
+ * HTML/CSS page. Keep this in lockstep with MASTER's version.
+ *
+ * WHAT IS DELIBERATELY ABSENT, and why:
+ *   shadcn semantic tokens  no components/ui here, they would be dead tokens
+ *   --radius-* ramp         nothing reads it; chronos's dead-token defect
+ *   --text-* ramp           same
+ *   CHARTS section          no charts on a static page
+ *   --transition-ui         G10 is "enumerate what THIS element animates";
+ *                           a static site with 4 transitions does not need a token
+ *
+ * CASCADE — this file must be linked/inlined BEFORE the site's own styles.
+ * G34/G51 sit in @layer base so ANY unlayered site rule outranks them: the site
+ * wins ties by construction. The focus rule and the reduce floor are UNLAYERED,
+ * exactly as in MASTER v1.2, because layered !important beats unlayered and a
+ * layered floor would outrank the site's own authored exemptions. That inversion
+ * is the defect v1.2 exists to fix; do not "tidy" these into a layer.
+ * ==========================================================================*/
+
+:root {
+  /* The only tokens here are the ring slots. A site re-points --ring at its own
+   * accent; it does not adopt a foreign palette. */
+  --ring: currentColor;
+  --ring-width: 2px;
+  --ring-offset: 2px;
+}
+
+@layer base {
+  /* G34 — `clip`, not `hidden`: hidden creates a scroll container and breaks
+   * position:sticky/fixed descendants. (CONFLICTS C2.) */
+  html, body { overflow-x: clip; }
+
+  /* G51 — 41 of 43 repos fail this. min-width:0 is required alongside, or
+   * overflow-wrap cannot take effect on a flex/grid child. */
+  h1, h2, h3, h4,
+  [data-display], .display, .font-display {
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+}
+
+/* G26 + G39 + G15 — the authored focus state. UNLAYERED on purpose (MASTER L2:
+ * a rule in @layer base loses to utilities and to vendored outline-none, so the
+ * source looks right while the browser paints nothing).
+ * outline, NOT border/box-shadow: box-shadow rings do not follow non-rectangular
+ * shapes and are ERASED in forced-colors mode. (CONFLICTS C1.) */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, summary:focus-visible,
+[tabindex]:focus-visible, [role="button"]:focus-visible {
+  outline: var(--ring-width) solid var(--ring);
+  outline-offset: var(--ring-offset);
+  transition: none;
+}
+a:focus:not(:focus-visible), button:focus:not(:focus-visible),
+input:focus:not(:focus-visible), select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible), summary:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Reduced motion — a FLOOR the site overrides, never a ceiling.
+ * UNLAYERED (v1.2). Ships its own exemptions, because a site with no guard of
+ * its own would otherwise have its spinners frozen by merely adopting this file
+ * — PLAYBOOK P02: less vestibular trigger, not less feedback. */
+@media (prefers-reduced-motion: reduce) {
+  *:not([data-motion-critical]),
+  *:not([data-motion-critical])::before,
+  *:not([data-motion-critical])::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-spin,
+  [role="progressbar"],
+  [data-loading="true"] {
+    animation-duration: 1s !important;
+    animation-iteration-count: infinite !important;
+  }
+  .animate-pulse,
+  [class*="skeleton" i],
+  [class*="shimmer" i] {
+    animation-duration: 2s !important;
+    animation-iteration-count: infinite !important;
+  }
+}

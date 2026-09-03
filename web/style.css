@@ -1,3 +1,14 @@
+/* Portfolio design system tokens. design-system.css (the trimmed static
+ * include) is linked first and supplies the focus rule, overflow guards and the
+ * reduced-motion floor; these point it at this site's own colours. */
+:root {
+  --ring: var(--accent);            /* #2563eb -- 4.74:1 light, 3.23:1 dark */
+  --input: oklch(0.28 0.01 250);    /* 13.37:1 worst on light surfaces */
+}
+@media (prefers-color-scheme: dark) {
+  :root { --input: oklch(0.53 0.01 250); }   /* 3.16:1 worst on dark surfaces */
+}
+
 :root {
   color-scheme: light dark;
   --bg: #f5f5f5;
@@ -58,7 +69,7 @@ button:active:not(:disabled) { transform: scale(0.96); filter: brightness(0.95);
 input, select {
   padding: 6px 8px;
   border-radius: 6px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--input);
   background: var(--card-bg);
   color: var(--fg);
   margin: 0 8px;
@@ -118,4 +129,20 @@ input, select {
 
 @media (prefers-reduced-motion: reduce) {
   button { transition-duration: .01ms; }
+}
+
+/* ---- REDUCED MOTION · P02 exemption --------------------------------------
+ * The trimmed include's floor is this site's first reduced-motion policy, and
+ * it would have frozen the WARMUP LOADER. .progress-ring is created in
+ * app.js:209 as `warmupRing` -- the only signal that the engine is warming up
+ * and the app has not hung. Freezing it makes a working app look dead:
+ * PLAYBOOK P02, "reduced motion means less vestibular trigger, not less
+ * feedback." Same class as sports-betting-web's scan-ring.
+ * Exempted at its OWN authored duration, !important because the floor carries
+ * !important too, declared after the include so this wins. */
+@media (prefers-reduced-motion: reduce) {
+  .progress-ring {
+    animation-duration: 700ms !important;
+    animation-iteration-count: infinite !important;
+  }
 }
